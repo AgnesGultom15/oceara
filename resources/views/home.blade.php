@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="{{ asset('js/tailwindcss3.4.1.js') }}"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,15 +13,6 @@
             font-family: Arial, sans-serif;
             background: url("{{ asset('images/pnti.jpg') }}") no-repeat center;
             background-size: cover;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0);
         }
 
         .logo {
@@ -100,26 +92,33 @@
 </head>
 <body>
     <header>
-        <div class="navbar">
+        <!-- Navbar updated with Tailwind classes -->
+        <div class="navbar flex justify-between items-center bg-white bg-opacity-0 p-2">
             <img src="{{ asset('images/Oceara pUTIH.png') }}" alt="Logo" class="logo" />
             <nav>
                 <a href="{{ url('/home') }}">HOME</a>
-                <a href="{{ url('/product') }}" id="p">DESTINASI</a>
+                <a href="{{ url('/destinasi') }}" id="p">DESTINASI</a>
                 <a href="{{ url('/promo') }}">PROMO</a>
             </nav>
             <a href="{{ url('/login') }}" id="user">
                 <img src="{{ asset('images/user-circle-fill.png') }}" />
             </a>
-            <div class="hero-content">
-                <h1>
-                    Mau Kemana <br />
-                    <span>Hari Ini?</span>
-                </h1>
-                <div class="search-bar">
-                    <input class="search-text" type="text" />
-                    <button type="submit" class="search-button">&#128269;</button>
-                </div>
+        </div>
+
+        <div class="hero-content">
+            <h1>
+                Mau Kemana <br />
+                <span>Hari Ini?</span>
+            </h1>
+            <div class="search-bar">
+                <input class="search-text" type="text" />
+                <button type="submit" class="search-button">&#128269;</button>
             </div>
+        </div>
+
+        <!-- Tailwind example section -->
+        <div class="bg-blue-200 text-blue-800 p-4 m-4 text-center rounded-xl">
+            Ini contoh implementasi Tailwind: margin, padding, dan background-color!
         </div>
     </header>
 </body>

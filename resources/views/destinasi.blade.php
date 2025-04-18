@@ -3,91 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DESTINASI</title>
+    <title>Destinasi</title>
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ asset('css/styles3.css') }}">
 
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=double_arrow">
-    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="{{ asset('js/tailwindcss3.4.1.js') }}"></script>
+
+    <style>
+        body {
+            font-family: 'Didact Gothic', sans-serif;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <div class="navbar">
-            <img src="{{ asset('images/Oceara pUTIH.png') }}" alt="Logo" class="logo">
-            <nav>
-                <a href="{{ url('/home') }}">HOME</a>
-                <a href="{{ url('/destinasi') }}">DESTINASI</a>
-                <a href="{{ url('/promo') }}">PROMO</a>
+<body class="bg-gradient-to-br from-blue-300 via-blue-100 to-blue-50 min-h-screen font-sans text-gray-800">
+
+    <!-- Navbar -->
+    <header class="bg-navy shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <img src="{{ asset('images/Oceara pUTIH.png') }}" alt="Logo" class="h-12">
+            <nav class="space-x-6 text-lg font-semibold text-gray-700">
+                <a href="{{ url('/home') }}" class="hover:text-blue-600">HOME</a>
+                <a href="{{ url('/destinasi') }}" class="text-blue-600 underline">DESTINASI</a>
+                <a href="{{ url('/promo') }}" class="hover:text-blue-600">PROMO</a>
             </nav>
-            <a href="{{ url('/login') }}" id="user">
-                <img src="{{ asset('images/user-circle-fill.png') }}">
+            <a href="{{ url('/login') }}">
+                <img src="{{ asset('images/user-circle-fill.png') }}" class="h-10">
             </a>
         </div>
     </header>
 
-    <div class="container swiper">
-        <div class="text-area">
-            <a href="{{ url('/galang') }}"><button>GALANG</button></a>
-            <a href="{{ url('/nongsa') }}"><button>NONGSA</button></a>
-            <a href="{{ url('/tanjung_pinggir') }}"><button>Tj.PINGGIR</button></a>
-            <a href="{{ url('/tiban') }}"><button>TIBAN</button></a>
-            <a href="{{ url('/sekupang') }}"><button>SEKUPANG</button></a>
-            <a href="{{ url('/piayu') }}"><button>PIAYU</button></a>
-            <a href="{{ url('/punggur') }}"><button>PUNGGUR</button></a>
+    <!-- Button Filter -->
+    <div class="max-w-6xl mx-auto mt-10 mb-4 px-4">
+        <div class="flex flex-wrap gap-3 justify-center">
+            @foreach (['galang', 'nongsa', 'tanjung_pinggir', 'tiban', 'sekupang', 'piayu', 'punggur'] as $area)
+                <a href="{{ url('/' . $area) }}">
+                    <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition">{{ strtoupper($area) }}</button>
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Card Swiper -->
+    <div class="swiper mySwiper max-w-6xl mx-auto px-4">
+        <div class="swiper-wrapper">
+            @php
+                $destinasi = [
+                    ['img' => 'pnt1.jpg', 'title' => 'MIROTA', 'url' => '/des1'],
+                    ['img' => 'pnt2.jpg', 'title' => 'CORNER', 'url' => '#'],
+                    ['img' => 'pnt3.jpg', 'title' => 'MELUR', 'url' => '#'],
+                    ['img' => 'pnt4.jpg', 'title' => 'MIROTA', 'url' => '#'],
+                    ['img' => 'pnt5.jpg', 'title' => 'MIROTA', 'url' => '#'],
+                    ['img' => 'pnt6.jpg', 'title' => 'MIROTA', 'url' => '#'],
+                    ['img' => 'pnt7.jpg', 'title' => 'MIROTA', 'url' => '#'],
+                ];
+            @endphp
+
+            @foreach ($destinasi as $item)
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition w-72">
+                        <img src="{{ asset('images/' . $item['img']) }}" alt="{{ $item['title'] }}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-xl font-bold text-gray-800">{{ $item['title'] }}</p>
+                            <a href="{{ $item['url'] }}">
+                                <p class="text-sm text-gray-600 mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
-        <div class="card-wrapper">
-            <ul class="card-list swiper-wrapper">
-                <li class="card-item swiper-slide">
-                    <img src="{{ asset('images/pnt1.jpg') }}" alt="img-1" class="image-item">
-                    <a><p class="sub">MIROTA</p></a>
-                    <a href="{{ url('/des1') }}"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-                <li class="card-item swiper-slide">
-                    <img src="{{ asset('images/pnt2.jpg') }}" alt="img-2" class="image-item">
-                    <a><p class="sub">CORNER</p></a>
-                    <a href="#"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-                <li class="card-item swiper-slide">A
-                    <img src="{{ asset('images/pnt3.jpg') }}" alt="img-3" class="image-item">
-                    <a><p class="sub">MELUR</p></a>
-                    <a href="#"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-                <li class="card-item swiper-slide">
-                    <img src="{{ asset('images/pnt4.jpg') }}" alt="img-4" class="image-item">
-                    <a><p class="sub">MIROTA</p></a>
-                    <a href="#"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-                <li class="card-item swiper-slide">
-                    <img src="{{ asset('images/pnt5.jpg') }}" alt="img-5" class="image-item">
-                    <a><p class="sub">MIROTA</p></a>
-                    <a href="#"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-                <li class="card-item swiper-slide">
-                    <img src="{{ asset('images/pnt6.jpg') }}" alt="img-6" class="image-item">
-                    <a><p class="sub">MIROTA</p></a>
-                    <a href="#"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-                <li class="card-item swiper-slide">
-                    <img src="{{ asset('images/pnt7.jpg') }}" alt="img-7" class="image-item">
-                    <a><p class="sub">MIROTA</p></a>
-                    <a href="#"><p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p></a>
-                </li>
-            </ul>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
+        <!-- Navigasi Swiper -->
+        <div class="swiper-button-next text-blue-600"></div>
+        <div class="swiper-button-prev text-blue-600"></div>
     </div>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
-    <!-- Custom Script -->
-    <script src="{{ asset('js/script5.js') }}"></script>
+
+    <!-- Inisialisasi Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            }
+        });
+    </script>
+
 </body>
 </html>

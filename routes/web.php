@@ -52,3 +52,8 @@ Route::get('/contact', [HomeController::class, 'contact']);
 //});
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
+Route::get('/tugaspublic', function () {
+    return view('tugaspublic');
+});
+
+Route::get('/promo', [\App\Http\Controllers\PromoController::class, 'index'])->name('promo');
