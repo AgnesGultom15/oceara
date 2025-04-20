@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListBarangController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgnesController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/home', function () {
     return view('home');
@@ -57,3 +58,5 @@ Route::get('/tugaspublic', function () {
 });
 
 Route::get('/promo', [\App\Http\Controllers\PromoController::class, 'index'])->name('promo');
+
+Route::get('/produk', [ProductController::class, 'index']);
