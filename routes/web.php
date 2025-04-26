@@ -34,6 +34,8 @@ Route::get('/user/{id}', function ($id){
    return 'User dengan ID ' . $id;
 });
 
+
+
 Route::prefix('admin')->group(function () {
    Route::get('/dashboard', function () {
       return 'Admin Dashboard';
@@ -43,7 +45,12 @@ Route::prefix('admin')->group(function () {
    Route::get('/users', function () {
       return 'Admin Users';
    });
-});
+
+   Route::get('/praktikum7agnes', function () {
+    return view('pages.home7');
+   });
+
+    });
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/contact', [HomeController::class, 'contact']);
@@ -60,3 +67,7 @@ Route::get('/tugaspublic', function () {
 Route::get('/promo', [\App\Http\Controllers\PromoController::class, 'index'])->name('promo');
 
 Route::get('/produk', [ProductController::class, 'index']);
+
+Route::get('/praktikum7agnes', function () {
+    return view('pages.home7');
+});
